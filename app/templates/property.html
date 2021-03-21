@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <h3>Add New Property</h3>
+    <hr>
+      {{ wtf.quick_form(form) }}
+    <hr>
+    
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/app.min.js') }}" charset="utf-8"></script>
+{% endblock %}

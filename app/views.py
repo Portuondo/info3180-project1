@@ -7,6 +7,7 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
+from app.forms import PropertyForm
 
 
 ###
@@ -23,6 +24,13 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/property/')
+def property():
+    form = PropertyForm(request.form)
+    if request.method == 'POST' and form.validate_on_submit():
+        return 'We confirm your registration!'
+    return render_template('property.html', form=form)
 
 
 ###
@@ -61,6 +69,8 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
+
+
 
 
 if __name__ == '__main__':
